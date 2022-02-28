@@ -17,6 +17,10 @@ eksctl get cluster
 ```
 eksctl delete cluster -f cluster.yaml  < --wait >
 
+or
+
+eksctl  delete cluster --name [ CLUSTER_NAME ] --region [REGION]
+
 ```
 
 ## Update config details
