@@ -1,0 +1,27 @@
+# A simple example of ClusterConfig object:
+---
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: stacks-dev
+  region: ${AWS_REGION}
+  apiVersion:
+
+availabilityZones: ["${AZS[0]}", "${AZS[1]}", "${AZS[2]}"]
+
+managedNodeGroups:
+- name: stacks-worker-dev
+  instanceType: t3.micro
+  minSize: 2
+  maxSize: 3
+  desiredCapacity: 2
+  ssh:
+    enableSsm: true
+
+cloudWatch:
+    clusterLogging:
+        # enable specific types of cluster control plane logs
+        enableTypes: ["audit", "authenticator", "controllerManager"]
+        # all supported types: "api", "audit", "authenticator", "controllerManager", "scheduler"
+        # supported special values: "*" and "all"
