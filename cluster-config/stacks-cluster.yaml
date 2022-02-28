@@ -5,15 +5,18 @@ kind: ClusterConfig
 
 metadata:
   name: stacks-dev
-  region: ${AWS_REGION}
-  apiVersion:
+  region: "eu-west-2"
+  version: "1.21"
+  tags:
+    environment: dev 
+    project: amido-stacks
 
-availabilityZones: ["${AZS[0]}", "${AZS[1]}", "${AZS[2]}"]
+availabilityZones: ["eu-west-2a", "eu-west-2b", "eu-west-2c"]
 
 managedNodeGroups:
-- name: stacks-worker-dev
+- name: managed-worker
   instanceType: t3.micro
-  minSize: 2
+  minSize: 1
   maxSize: 3
   desiredCapacity: 2
   ssh:
